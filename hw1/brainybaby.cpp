@@ -679,18 +679,22 @@ void display()
   glPopMatrix();
   
   // Start drawing numbers 1-4 behind the left-most block
+  // stacked 
   glPushMatrix();
-  glTranslatef(-10,-10,-18);
+  glTranslatef(-5,-10,-14);
   for (int i = 1; i < 5; i++){
   	drawNumber(i);
+  	glTranslatef(-4,0,0);
   }
   glPopMatrix();
   
   // Start drawing numbers 5-9 behind the right-most block
+  // stacked
   glPushMatrix();
-  glTranslatef(10,-10,-18);
+  glTranslatef(5,-10,-14);
   for (int i = 5; i < 10; i++){
   	drawNumber(i);
+  	glTranslatef(4,0,0);
   }
   glPopMatrix();
   

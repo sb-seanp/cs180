@@ -1,4 +1,4 @@
 LIBS = -lGL -lGLU -lglut
 
-blocks: blocks.cpp
+brainybaby: brainybaby.cpp
 	gcc -o $@ $< $(LIBS)
