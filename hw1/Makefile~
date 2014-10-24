@@ -1,0 +1,4 @@
+LIBS = -lGL -lGLU -lglut
+
+2blocks: 2blocks.cpp
+	gcc -o $@ $< $(LIBS)
