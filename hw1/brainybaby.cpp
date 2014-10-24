@@ -3,28 +3,27 @@
 #include <GL/glut.h>
 #include <cstdlib>
 
-void init()
-{
+void init(){
   glEnable(GL_DEPTH_TEST);
   glShadeModel(GL_FLAT);
 }
 
 // Draw white square background
 void drawBackground(){
-	glBegin(GL_POLYGON);
-	glVertex3f( 100, 100, -40);
-	glVertex3f(-100, 100, -40);
-	glVertex3f(-100,-100, -40);
-	glVertex3f( 100,-100, -40);
-	glEnd();
+  glBegin(GL_POLYGON);
+  glVertex3f( 100, 100, -40);
+  glVertex3f(-100, 100, -40);
+  glVertex3f(-100,-100, -40);
+  glVertex3f( 100,-100, -40);
+  glEnd();
 }
 
 // Draw single eave
 void drawEave(){
-	glColor3ub(0,0,255);
+  glColor3ub(0,0,255);
 	
-	// Top
-	glBegin(GL_POLYGON);
+  // Top
+  glBegin(GL_POLYGON);
   glVertex3f( 2.8, 2.8, 2.2);
   glVertex3f(-2.8, 2.8, 2.2);
   glVertex3f(-2.8, 2.8, 2.8);
@@ -75,10 +74,10 @@ void drawEave(){
 
 // Draw triangular prism
 void drawTriPrism(){
-	glColor3ub(0,255,0);
-	
-	// Front
-	glBegin(GL_POLYGON);
+  glColor3ub(0,255,0);
+  
+  // Front
+  glBegin(GL_POLYGON);
   glVertex3f(   0, 1.0, 3.0);
   glVertex3f(-1.5,-1.0, 3.0);
   glVertex3f( 1.5,-1.0, 3.0);
@@ -118,9 +117,9 @@ void drawTriPrism(){
 
 // Draw single rectangle for plus sign
 void drawPlusRect(){
-	// Top
-	glBegin(GL_POLYGON);
-	glVertex3f( 0.2, 1.0, 2.5);
+  // Top
+  glBegin(GL_POLYGON);
+  glVertex3f( 0.2, 1.0, 2.5);
   glVertex3f(-0.2, 1.0, 2.5);
   glVertex3f(-0.2, 1.0, 3.0);
   glVertex3f( 0.2, 1.0, 3.0);
@@ -128,7 +127,7 @@ void drawPlusRect(){
   
   // Bottom
   glBegin(GL_POLYGON);
-	glVertex3f( 0.2,-1.0, 3.0);
+  glVertex3f( 0.2,-1.0, 3.0);
   glVertex3f(-0.2,-1.0, 3.0);
   glVertex3f(-0.2,-1.0, 2.5);
   glVertex3f( 0.2,-1.0, 2.5);
@@ -136,7 +135,7 @@ void drawPlusRect(){
   
   // Back
   glBegin(GL_POLYGON);
-	glVertex3f( 0.2, 1.0, 2.5);
+  glVertex3f( 0.2, 1.0, 2.5);
   glVertex3f(-0.2, 1.0, 2.5);
   glVertex3f(-0.2,-1.0, 2.5);
   glVertex3f( 0.2,-1.0, 2.5);
@@ -144,7 +143,7 @@ void drawPlusRect(){
   
   // Front
   glBegin(GL_POLYGON);
-	glVertex3f( 0.2, 1.0, 3.0);
+  glVertex3f( 0.2, 1.0, 3.0);
   glVertex3f(-0.2, 1.0, 3.0);
   glVertex3f(-0.2,-1.0, 3.0);
   glVertex3f( 0.2,-1.0, 3.0);
@@ -152,7 +151,7 @@ void drawPlusRect(){
   
   // Left
   glBegin(GL_POLYGON);
-	glVertex3f(-0.2, 1.0, 3.0);
+  glVertex3f(-0.2, 1.0, 3.0);
   glVertex3f(-0.2, 1.0, 2.5);
   glVertex3f(-0.2,-1.0, 2.5);
   glVertex3f(-0.2,-1.0, 3.0);
@@ -160,7 +159,7 @@ void drawPlusRect(){
   
   // Right
   glBegin(GL_POLYGON);
-	glVertex3f( 0.2, 1.0, 3.0);
+  glVertex3f( 0.2, 1.0, 3.0);
   glVertex3f( 0.2, 1.0, 2.5);
   glVertex3f( 0.2,-1.0, 2.5);
   glVertex3f( 0.2,-1.0, 3.0);
@@ -169,15 +168,15 @@ void drawPlusRect(){
 
 // Draw plus sign
 void drawPlus(){
-	glColor3ub(75,75,0);
-	
-	drawPlusRect();
-	
-	glPushMatrix();
-	glRotatef(90,0.0f,0.0f,1.0f);
-	glScalef(0.5f,1.0f,1.0f);
-	drawPlusRect();
-	glPopMatrix();
+  glColor3ub(75,75,0);
+  
+  drawPlusRect();
+  
+  glPushMatrix();
+  glRotatef(90,0.0f,0.0f,1.0f);
+  glScalef(0.5f,1.0f,1.0f);
+  drawPlusRect();
+  glPopMatrix();
 }
 
 void drawBlock(){
@@ -337,297 +336,297 @@ void drawBlock(){
 
 // Draw single rectangle for numbers
 void drawRect(){
-	// Top
-	glBegin(GL_POLYGON);
-	glVertex3f( 0.5, 2.5,-0.5);
-	glVertex3f(-0.5, 2.5,-0.5);
-	glVertex3f(-0.5, 2.5, 0.5);
-	glVertex3f( 0.5, 2.5, 0.5);
-	glEnd();
-	
-	// Bottom
-	glBegin(GL_POLYGON);
-	glVertex3f( 0.5,-2.5,-0.5);
-	glVertex3f(-0.5,-2.5,-0.5);
-	glVertex3f(-0.5,-2.5, 0.5);
-	glVertex3f( 0.5,-2.5, 0.5);
-	glEnd();
-	
-	// Back
-	glBegin(GL_POLYGON);
-	glVertex3f( 0.5, 2.5,-0.5);
-	glVertex3f(-0.5, 2.5,-0.5);
-	glVertex3f(-0.5,-2.5,-0.5);
-	glVertex3f( 0.5,-2.5,-0.5);
-	glEnd();
-	
-	// Front
-	glBegin(GL_POLYGON);
-	glVertex3f( 0.5, 2.5, 0.5);
-	glVertex3f(-0.5, 2.5, 0.5);
-	glVertex3f(-0.5,-2.5, 0.5);
-	glVertex3f( 0.5,-2.5, 0.5);
-	glEnd();
-	
-	// Left
-	glBegin(GL_POLYGON);
-	glVertex3f( 0.5, 2.5, 0.5);
-	glVertex3f( 0.5, 2.5,-0.5);
-	glVertex3f( 0.5,-2.5,-0.5);
-	glVertex3f( 0.5,-2.5, 0.5);
-	glEnd();
-	
-	// Right
-	glBegin(GL_POLYGON);
-	glVertex3f(-0.5, 2.5, 0.5);
-	glVertex3f(-0.5, 2.5,-0.5);
-	glVertex3f(-0.5,-2.5,-0.5);
-	glVertex3f(-0.5,-2.5, 0.5);
-	glEnd();
+  // Top
+  glBegin(GL_POLYGON);
+  glVertex3f( 0.5, 2.5,-0.5);
+  glVertex3f(-0.5, 2.5,-0.5);
+  glVertex3f(-0.5, 2.5, 0.5);
+  glVertex3f( 0.5, 2.5, 0.5);
+  glEnd();
+  
+  // Bottom
+  glBegin(GL_POLYGON);
+  glVertex3f( 0.5,-2.5,-0.5);
+  glVertex3f(-0.5,-2.5,-0.5);
+  glVertex3f(-0.5,-2.5, 0.5);
+  glVertex3f( 0.5,-2.5, 0.5);
+  glEnd();
+  
+  // Back
+  glBegin(GL_POLYGON);
+  glVertex3f( 0.5, 2.5,-0.5);
+  glVertex3f(-0.5, 2.5,-0.5);
+  glVertex3f(-0.5,-2.5,-0.5);
+  glVertex3f( 0.5,-2.5,-0.5);
+  glEnd();
+  
+  // Front
+  glBegin(GL_POLYGON);
+  glVertex3f( 0.5, 2.5, 0.5);
+  glVertex3f(-0.5, 2.5, 0.5);
+  glVertex3f(-0.5,-2.5, 0.5);
+  glVertex3f( 0.5,-2.5, 0.5);
+  glEnd();
+  
+  // Left
+  glBegin(GL_POLYGON);
+  glVertex3f( 0.5, 2.5, 0.5);
+  glVertex3f( 0.5, 2.5,-0.5);
+  glVertex3f( 0.5,-2.5,-0.5);
+  glVertex3f( 0.5,-2.5, 0.5);
+  glEnd();
+  
+  // Right
+  glBegin(GL_POLYGON);
+  glVertex3f(-0.5, 2.5, 0.5);
+  glVertex3f(-0.5, 2.5,-0.5);
+  glVertex3f(-0.5,-2.5,-0.5);
+  glVertex3f(-0.5,-2.5, 0.5);
+  glEnd();
 }
 
 // Draw numbers
 void drawNumber(int num){
-	glPushMatrix();
-	glTranslatef(0,0,10);
-	if (num == 1){
-		glColor3ub(255,0,0);
-		drawRect();
-	}
-	if (num == 2){
-		glColor3ub(0,155,0);
-		
-		glPushMatrix();
-		glTranslatef(1.0,1.0,0);
-		glScalef(1.0f,0.5f,1.0f);
-		drawRect();
-		glPopMatrix();
-		
-		glPushMatrix();
-		glTranslatef(-1.0,-1,0);
-		glScalef(1.0f,0.5f,1.0f);
-		drawRect();
-		glPopMatrix();
-		
-		glPushMatrix();
-		glTranslatef(0,2,0);
-		glRotatef(90,0.0f,0.0f,1.0f);
-		glScalef(1.0f,0.5f,1.0f);
-		drawRect();
-		glPopMatrix();
-		
-		glPushMatrix();
-		glTranslatef(0,-0,0);
-		glRotatef(90,0.0f,0.0f,1.0f);
-		glScalef(1.0f,0.5f,1.0f);
-		drawRect();
-		glPopMatrix();
-		
-		glPushMatrix();
-		glTranslatef(0,-2,0);
-		glRotatef(90,0.0f,0.0f,1.0f);
-		glScalef(1.0f,0.5f,1.0f);
-		drawRect();
-		glPopMatrix();
-	}
-	if (num == 3){
-		glColor3ub(0,0,155);
-		 
-	 	glPushMatrix();
-		glTranslatef(1.0,0,0);
-		drawRect();
-		glPopMatrix();
-		
-		glPushMatrix();
-		glTranslatef(0,2,0);
-		glRotatef(90,0.0f,0.0f,1.0f);
-		glScalef(1.0f,0.5f,1.0f);
-		drawRect();
-		glPopMatrix();
-		
-		glPushMatrix();
-		glRotatef(90,0.0f,0.0f,1.0f);
-		glScalef(1.0f,0.5f,1.0f);
-		drawRect();
-		glPopMatrix();
-		
-		glPushMatrix();
-		glTranslatef(0,-2,0);
-		glRotatef(90,0.0f,0.0f,1.0f);
-		glScalef(1.0f,0.5f,1.0f);
-		drawRect();
-		glPopMatrix();
-	}
-	if (num == 4){
-		glColor3ub(155,155,0);
-		
-		glPushMatrix();
-		glTranslatef(1.0,0,0);
-		drawRect();
-		glPopMatrix();
-		
-		glPushMatrix();
-		glRotatef(90,0.0f,0.0f,1.0f);
-		glScalef(1.0f,0.5f,1.0f);
-		drawRect();
-		glPopMatrix();
-		
-		glPushMatrix();
-		glTranslatef(-1.0,1,0);
-		glScalef(1.0f,0.5f,1.0f);
-		drawRect();
-		glPopMatrix();
-	}
-	if (num == 5){
-		glColor3ub(155,0,155);
-		
-		glPushMatrix();
-		glTranslatef(-1.0,1,0);
-		glScalef(1.0f,0.5f,1.0f);
-		drawRect();
-		glPopMatrix();
-		
-		glPushMatrix();
-		glTranslatef(1.0,-1,0);
-		glScalef(1.0f,0.5f,1.0f);
-		drawRect();
-		glPopMatrix();
-		
-		glPushMatrix();
-		glTranslatef(0,2,0);
-		glRotatef(90,0.0f,0.0f,1.0f);
-		glScalef(1.0f,0.5f,1.0f);
-		drawRect();
-		glPopMatrix();
-		
-		glPushMatrix();
-		glTranslatef(0,-0,0);
-		glRotatef(90,0.0f,0.0f,1.0f);
-		glScalef(1.0f,0.5f,1.0f);
-		drawRect();
-		glPopMatrix();
-		
-		glPushMatrix();
-		glTranslatef(0,-2,0);
-		glRotatef(90,0.0f,0.0f,1.0f);
-		glScalef(1.0f,0.5f,1.0f);
-		drawRect();
-		glPopMatrix();
-	}
-	if (num == 6){
-		glColor3ub(0,155,155);
-		
-		glPushMatrix();
-		glTranslatef(-1.0,0,0);
-		drawRect();
-		glPopMatrix();
-		
-		glPushMatrix();
-		glTranslatef(1.0,-1.25,0);
-		glScalef(1.0f,0.5f,1.0f);
-		drawRect();
-		glPopMatrix();
-		
-		glPushMatrix();
-		glTranslatef(0,2,0);
-		glRotatef(90,0.0f,0.0f,1.0f);
-		glScalef(1.0f,0.5f,1.0f);
-		drawRect();
-		glPopMatrix();
-		
-		glPushMatrix();
-		glTranslatef(0,0,0);
-		glRotatef(90,0.0f,0.0f,1.0f);
-		glScalef(1.0f,0.5f,1.0f);
-		drawRect();
-		glPopMatrix();
-		
-		glPushMatrix();
-		glTranslatef(0,-2,0);
-		glRotatef(90,0.0f,0.0f,1.0f);
-		glScalef(1.0f,0.5f,1.0f);
-		drawRect();
-		glPopMatrix();
-	}
-	if (num == 7){
-		glColor3ub(155,0,0);
-		
-		glPushMatrix();
-		glTranslatef(1.5,0,0);
-		drawRect();
-		glPopMatrix();
-		
-		glPushMatrix();
-		glTranslatef(0,2,0);
-		glRotatef(-90,0.0f,0.0f,1.0f);
-		glScalef(1.0f,0.5f,1.0f);
-		drawRect();
-		glPopMatrix();
-	}
-	if (num == 8){
-		glColor3ub(155,155,155);
-		
-		glPushMatrix();
-		glTranslatef(-1.0,0,0);
-		drawRect();
-		glPopMatrix();
-		
-		glPushMatrix();
-		glTranslatef(1.0,0,0);
-		drawRect();
-		glPopMatrix();
-		
-		glPushMatrix();
-		glTranslatef(0,2,0);
-		glRotatef(90,0.0f,0.0f,1.0f);
-		glScalef(1.0f,0.5f,1.0f);
-		drawRect();
-		glPopMatrix();
-		
-		glPushMatrix();
-		glTranslatef(0,0,0);
-		glRotatef(90,0.0f,0.0f,1.0f);
-		glScalef(1.0f,0.5f,1.0f);
-		drawRect();
-		glPopMatrix();
-		
-		glPushMatrix();
-		glTranslatef(0,-2,0);
-		glRotatef(90,0.0f,0.0f,1.0f);
-		glScalef(1.0f,0.5f,1.0f);
-		drawRect();
-		glPopMatrix();
-	}
-	if (num == 9){
-		glColor3ub(0,75,155);
-		
-		glPushMatrix();
-		glTranslatef(1.0,0,0);
-		drawRect();
-		glPopMatrix();
-		
-		glPushMatrix();
-		glTranslatef(0,2,0);
-		glRotatef(90,0.0f,0.0f,1.0f);
-		glScalef(1.0f,0.5f,1.0f);
-		drawRect();
-		glPopMatrix();
-		
-		glPushMatrix();
-		glTranslatef(0,0,0);
-		glRotatef(90,0.0f,0.0f,1.0f);
-		glScalef(1.0f,0.5f,1.0f);
-		drawRect();
-		glPopMatrix();
-		
-		glPushMatrix();
-		glTranslatef(-1.0,1,0);
-		glScalef(1.0f,0.5f,1.0f);
-		drawRect();
-		glPopMatrix();
-	}
-	
-	glPopMatrix();
+  glPushMatrix();
+  glTranslatef(0,0,10);
+  if (num == 1){
+    glColor3ub(255,0,0);
+    drawRect();
+  }
+  if (num == 2){
+    glColor3ub(0,155,0);
+    
+    glPushMatrix();
+    glTranslatef(1.0,1.0,0);
+    glScalef(1.0f,0.5f,1.0f);
+    drawRect();
+    glPopMatrix();
+    
+    glPushMatrix();
+    glTranslatef(-1.0,-1,0);
+    glScalef(1.0f,0.5f,1.0f);
+    drawRect();
+    glPopMatrix();
+    
+    glPushMatrix();
+    glTranslatef(0,2,0);
+    glRotatef(90,0.0f,0.0f,1.0f);
+    glScalef(1.0f,0.5f,1.0f);
+    drawRect();
+    glPopMatrix();
+    
+    glPushMatrix();
+    glTranslatef(0,-0,0);
+    glRotatef(90,0.0f,0.0f,1.0f);
+    glScalef(1.0f,0.5f,1.0f);
+    drawRect();
+    glPopMatrix();
+    
+    glPushMatrix();
+    glTranslatef(0,-2,0);
+    glRotatef(90,0.0f,0.0f,1.0f);
+    glScalef(1.0f,0.5f,1.0f);
+    drawRect();
+    glPopMatrix();
+  }
+  if (num == 3){
+    glColor3ub(0,0,155);
+    
+    glPushMatrix();
+    glTranslatef(1.0,0,0);
+    drawRect();
+    glPopMatrix();
+    
+    glPushMatrix();
+    glTranslatef(0,2,0);
+    glRotatef(90,0.0f,0.0f,1.0f);
+    glScalef(1.0f,0.5f,1.0f);
+    drawRect();
+    glPopMatrix();
+    
+    glPushMatrix();
+    glRotatef(90,0.0f,0.0f,1.0f);
+    glScalef(1.0f,0.5f,1.0f);
+    drawRect();
+    glPopMatrix();
+    
+    glPushMatrix();
+    glTranslatef(0,-2,0);
+    glRotatef(90,0.0f,0.0f,1.0f);
+    glScalef(1.0f,0.5f,1.0f);
+    drawRect();
+    glPopMatrix();
+  }
+  if (num == 4){
+    glColor3ub(155,155,0);
+    
+    glPushMatrix();
+    glTranslatef(1.0,0,0);
+    drawRect();
+    glPopMatrix();
+    
+    glPushMatrix();
+    glRotatef(90,0.0f,0.0f,1.0f);
+    glScalef(1.0f,0.5f,1.0f);
+    drawRect();
+    glPopMatrix();
+    
+    glPushMatrix();
+    glTranslatef(-1.0,1,0);
+    glScalef(1.0f,0.5f,1.0f);
+    drawRect();
+    glPopMatrix();
+  }
+  if (num == 5){
+    glColor3ub(155,0,155);
+    
+    glPushMatrix();
+    glTranslatef(-1.0,1,0);
+    glScalef(1.0f,0.5f,1.0f);
+    drawRect();
+    glPopMatrix();
+    
+    glPushMatrix();
+    glTranslatef(1.0,-1,0);
+    glScalef(1.0f,0.5f,1.0f);
+    drawRect();
+    glPopMatrix();
+    
+    glPushMatrix();
+    glTranslatef(0,2,0);
+    glRotatef(90,0.0f,0.0f,1.0f);
+    glScalef(1.0f,0.5f,1.0f);
+    drawRect();
+    glPopMatrix();
+    
+    glPushMatrix();
+    glTranslatef(0,-0,0);
+    glRotatef(90,0.0f,0.0f,1.0f);
+    glScalef(1.0f,0.5f,1.0f);
+    drawRect();
+    glPopMatrix();
+    
+    glPushMatrix();
+    glTranslatef(0,-2,0);
+    glRotatef(90,0.0f,0.0f,1.0f);
+    glScalef(1.0f,0.5f,1.0f);
+    drawRect();
+    glPopMatrix();
+  }
+  if (num == 6){
+    glColor3ub(0,155,155);
+    
+    glPushMatrix();
+    glTranslatef(-1.0,0,0);
+    drawRect();
+    glPopMatrix();
+    
+    glPushMatrix();
+    glTranslatef(1.0,-1.25,0);
+    glScalef(1.0f,0.5f,1.0f);
+    drawRect();
+    glPopMatrix();
+    
+    glPushMatrix();
+    glTranslatef(0,2,0);
+    glRotatef(90,0.0f,0.0f,1.0f);
+    glScalef(1.0f,0.5f,1.0f);
+    drawRect();
+    glPopMatrix();
+    
+    glPushMatrix();
+    glTranslatef(0,0,0);
+    glRotatef(90,0.0f,0.0f,1.0f);
+    glScalef(1.0f,0.5f,1.0f);
+    drawRect();
+    glPopMatrix();
+    
+    glPushMatrix();
+    glTranslatef(0,-2,0);
+    glRotatef(90,0.0f,0.0f,1.0f);
+    glScalef(1.0f,0.5f,1.0f);
+    drawRect();
+    glPopMatrix();
+  }
+  if (num == 7){
+    glColor3ub(155,0,0);
+    
+    glPushMatrix();
+    glTranslatef(1.5,0,0);
+    drawRect();
+    glPopMatrix();
+    
+    glPushMatrix();
+    glTranslatef(0,2,0);
+    glRotatef(-90,0.0f,0.0f,1.0f);
+    glScalef(1.0f,0.5f,1.0f);
+    drawRect();
+    glPopMatrix();
+  }
+  if (num == 8){
+    glColor3ub(155,155,155);
+    
+    glPushMatrix();
+    glTranslatef(-1.0,0,0);
+    drawRect();
+    glPopMatrix();
+    
+    glPushMatrix();
+    glTranslatef(1.0,0,0);
+    drawRect();
+    glPopMatrix();
+    
+    glPushMatrix();
+    glTranslatef(0,2,0);
+    glRotatef(90,0.0f,0.0f,1.0f);
+    glScalef(1.0f,0.5f,1.0f);
+    drawRect();
+    glPopMatrix();
+    
+    glPushMatrix();
+    glTranslatef(0,0,0);
+    glRotatef(90,0.0f,0.0f,1.0f);
+    glScalef(1.0f,0.5f,1.0f);
+    drawRect();
+    glPopMatrix();
+    
+    glPushMatrix();
+    glTranslatef(0,-2,0);
+    glRotatef(90,0.0f,0.0f,1.0f);
+    glScalef(1.0f,0.5f,1.0f);
+    drawRect();
+    glPopMatrix();
+  }
+  if (num == 9){
+    glColor3ub(0,75,155);
+    
+    glPushMatrix();
+    glTranslatef(1.0,0,0);
+    drawRect();
+    glPopMatrix();
+    
+    glPushMatrix();
+    glTranslatef(0,2,0);
+    glRotatef(90,0.0f,0.0f,1.0f);
+    glScalef(1.0f,0.5f,1.0f);
+    drawRect();
+    glPopMatrix();
+    
+    glPushMatrix();
+    glTranslatef(0,0,0);
+    glRotatef(90,0.0f,0.0f,1.0f);
+    glScalef(1.0f,0.5f,1.0f);
+    drawRect();
+    glPopMatrix();
+    
+    glPushMatrix();
+    glTranslatef(-1.0,1,0);
+    glScalef(1.0f,0.5f,1.0f);
+    drawRect();
+    glPopMatrix();
+  }
+  
+  glPopMatrix();
 }
 
 void display()
@@ -706,13 +705,11 @@ void display()
 }
 
 // Set viewport
-void reshape(int w, int h)
-{
+void reshape(int w, int h){
   glViewport(0, 0, w, h);
 }
 
-int main(int argc, char **argv)
-{
+int main(int argc, char **argv){
   glutInit(&argc, argv);
   glutInitWindowSize(640,480);
   glutInitDisplayMode(GLUT_RGBA | GLUT_DEPTH | GLUT_DOUBLE);
