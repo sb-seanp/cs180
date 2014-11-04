@@ -635,6 +635,24 @@ void drawNumber(int num){
   glPopMatrix();
 }
 
+void drawNumbers(int value){
+	static float numZ = 0;
+  static float rightX = 0;
+  static float leftX = 0;
+  
+  glPushMatrix();
+  glTranslatef(leftX,0,numZ);
+  drawNumber(value);
+  glPopMatrix();
+  
+  numZ += .03;
+  rightX -= .03;
+  leftX += .03;
+  glutPostRedisplay();
+  
+  glutTimerFunc(5000, drawNumbers(value++), 0);
+}
+
 void display()
 {
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -704,10 +722,10 @@ void display()
   drawNumber(1);
   glPopMatrix();
   
-  glPushMatrix();
-  glTranslatef(leftX,0,numZ);
-  drawNumber(2);
-  glPopMatrix();
+	glPushMatrix();
+	glTranslatef(leftX,0,numZ);
+	drawNumber(2);
+	glPopMatrix();
   
   glPushMatrix();
   glTranslatef(leftX,0,numZ);
@@ -763,7 +781,7 @@ void display()
   beta -= .3;
   numZ += .03;
   rightX -= .03;
-  leftX += .03; 
+  leftX += .03;
   glutPostRedisplay();
 }
 
