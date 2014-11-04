@@ -3,9 +3,15 @@
 #include <GL/glut.h>
 #include <cstdlib>
 
+using namespace std;
+
 void init(){
   glEnable(GL_DEPTH_TEST);
   glShadeModel(GL_FLAT);
+  /*glEnable(GL_LIGHTING);
+  glEnable(GL_LIGHT0);
+  GLfloat lightpos[] = {0.5,1.,1.,0.};
+  glLightfv(GL_LIGHT0, GL_POSITION, lightpos);*/
 }
 
 // Draw white square background
@@ -643,6 +649,12 @@ void display()
   glMatrixMode(GL_MODELVIEW);
   glLoadIdentity();
   
+  static float alpha = 0;
+  static float beta = 0;
+  static float numZ = 0;
+  static float rightX = 0;
+  static float leftX = 0;
+  
   // Move into the screen a bit
   glTranslatef( 0, 0, -35 );
   
@@ -650,51 +662,95 @@ void display()
   glPushMatrix();
   glTranslatef(0,-10,-20);
   glColor3ub(255,0,255);
+  glRotatef(alpha,0.0f,1.0f,0.0f);
   drawBlock();
   glPopMatrix();
   
   glPushMatrix();
   glTranslatef(5,-10,-10);
   glColor3ub(255,0,255);
+  glRotatef(beta,0.0f,1.0f,0.0f);
   drawBlock();
   glPopMatrix();
   
   glPushMatrix();
   glTranslatef(10,-10,0);
   glColor3ub(255,0,255);
+  glRotatef(alpha,0.0f,1.0f,0.0f);
 	drawBlock();
   glPopMatrix();
   
   glPushMatrix();
   glTranslatef(-5,-10,-10);
   glColor3ub(255,0,255);
+  glRotatef(beta,0.0f,1.0f,0.0f);
   drawBlock();
   glPopMatrix();
   
   glPushMatrix();
   glTranslatef(-10,-10,0);
   glColor3ub(255,0,255);
+  glRotatef(alpha,0.0f,1.0f,0.0f);
   drawBlock();
   glPopMatrix();
   
   // Start drawing numbers 1-4 behind the left-most block
-  // stacked 
+  // stacked
+  glPushMatrix(); 
+  glTranslatef(-10,-10,-14);
+  
   glPushMatrix();
-  glTranslatef(-5,-10,-14);
-  for (int i = 1; i < 5; i++){
-  	drawNumber(i);
-  	glTranslatef(-4,0,0);
-  }
+  glTranslatef(leftX,0,numZ);
+  drawNumber(1);
+  glPopMatrix();
+  
+  glPushMatrix();
+  glTranslatef(leftX,0,numZ);
+  drawNumber(2);
+  glPopMatrix();
+  
+  glPushMatrix();
+  glTranslatef(leftX,0,numZ);
+  drawNumber(3);
+  glPopMatrix();
+  
+  glPushMatrix();
+  glTranslatef(leftX,0,numZ);
+  drawNumber(4);
+  glPopMatrix();
+  
   glPopMatrix();
   
   // Start drawing numbers 5-9 behind the right-most block
   // stacked
   glPushMatrix();
-  glTranslatef(5,-10,-14);
-  for (int i = 5; i < 10; i++){
-  	drawNumber(i);
-  	glTranslatef(4,0,0);
-  }
+  glTranslatef(10,-10,-14);
+  
+  glPushMatrix();
+  glTranslatef(rightX,0,numZ);
+  drawNumber(5);
+  glPopMatrix();
+  
+  glPushMatrix();
+  glTranslatef(rightX,0,numZ);
+  drawNumber(6);
+  glPopMatrix();
+  
+  glPushMatrix();
+  glTranslatef(rightX,0,numZ);
+  drawNumber(7);
+  glPopMatrix();
+  
+  glPushMatrix();
+  glTranslatef(rightX,0,numZ);
+  drawNumber(8);
+  glPopMatrix();
+  
+  glPushMatrix();
+  glTranslatef(rightX,0,numZ);
+  drawNumber(9);
+  glPopMatrix();
+  
   glPopMatrix();
   
   // Initiate white background polygon
@@ -702,6 +758,13 @@ void display()
   drawBackground();
   
   glutSwapBuffers();
+  
+  alpha += .3;
+  beta -= .3;
+  numZ += .03;
+  rightX -= .03;
+  leftX += .03; 
+  glutPostRedisplay();
 }
 
 // Set viewport
