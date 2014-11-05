@@ -3,8 +3,6 @@
 #include <GL/glut.h>
 #include <cstdlib>
 
-using namespace std;
-
 void init(){
   glEnable(GL_DEPTH_TEST);
   glShadeModel(GL_FLAT);
@@ -640,17 +638,224 @@ void drawNumbers(int value){
   static float rightX = 0;
   static float leftX = 0;
   
-  glPushMatrix();
-  glTranslatef(leftX,0,numZ);
-  drawNumber(value);
-  glPopMatrix();
-  
-  numZ += .03;
-  rightX -= .03;
-  leftX += .03;
+	if (value <= 9){
+		if (value%2 != 0){
+			glPushMatrix();
+			glTranslatef(leftX,0,numZ);
+			drawNumber(value);
+			glPopMatrix();
+		}
+		else{
+			glPushMatrix();
+			glTranslatef(rightX,0,numZ);
+			drawNumber(value);
+			glPopMatrix();
+		}
+  }
+  numZ += .06;
+  rightX -= .04;
+  leftX += .04;
   glutPostRedisplay();
+}
+
+void drawNumbers2(int value){
+	static float numZ = 0;
+  static float rightX = 0;
+  static float leftX = 0;
   
-  glutTimerFunc(5000, drawNumbers(value++), 0);
+	if (value <= 9){
+		if (value%2 != 0){
+			glPushMatrix();
+			glTranslatef(leftX,0,numZ);
+			drawNumber(value);
+			glPopMatrix();
+		}
+		else{
+			glPushMatrix();
+			glTranslatef(rightX,0,numZ);
+			drawNumber(value);
+			glPopMatrix();
+		}
+  }
+  numZ += .06;
+  rightX -= .04;
+  leftX += .04;
+  glutPostRedisplay();
+}
+
+void drawNumbers3(int value){
+	static float numZ = 0;
+  static float rightX = 0;
+  static float leftX = 0;
+  
+	if (value <= 9){
+		if (value%2 != 0){
+			glPushMatrix();
+			glTranslatef(leftX,0,numZ);
+			drawNumber(value);
+			glPopMatrix();
+		}
+		else{
+			glPushMatrix();
+			glTranslatef(rightX,0,numZ);
+			drawNumber(value);
+			glPopMatrix();
+		}
+  }
+  numZ += .06;
+  rightX -= .04;
+  leftX += .04;
+  glutPostRedisplay();
+}
+
+void drawNumbers4(int value){
+	static float numZ = 0;
+  static float rightX = 0;
+  static float leftX = 0;
+  
+	if (value <= 9){
+		if (value%2 != 0){
+			glPushMatrix();
+			glTranslatef(leftX,0,numZ);
+			drawNumber(value);
+			glPopMatrix();
+		}
+		else{
+			glPushMatrix();
+			glTranslatef(rightX,0,numZ);
+			drawNumber(value);
+			glPopMatrix();
+		}
+  }
+  numZ += .06;
+  rightX -= .04;
+  leftX += .04;
+  glutPostRedisplay();
+}
+
+void drawNumbers5(int value){
+	static float numZ = 0;
+  static float rightX = 0;
+  static float leftX = 0;
+  
+	if (value <= 9){
+		if (value%2 != 0){
+			glPushMatrix();
+			glTranslatef(leftX,0,numZ);
+			drawNumber(value);
+			glPopMatrix();
+		}
+		else{
+			glPushMatrix();
+			glTranslatef(rightX,0,numZ);
+			drawNumber(value);
+			glPopMatrix();
+		}
+  }
+  numZ += .06;
+  rightX -= .04;
+  leftX += .04;
+  glutPostRedisplay();
+}
+
+void drawNumbers6(int value){
+	static float numZ = 0;
+  static float rightX = 0;
+  static float leftX = 0;
+  
+	if (value <= 9){
+		if (value%2 != 0){
+			glPushMatrix();
+			glTranslatef(leftX,0,numZ);
+			drawNumber(value);
+			glPopMatrix();
+		}
+		else{
+			glPushMatrix();
+			glTranslatef(rightX,0,numZ);
+			drawNumber(value);
+			glPopMatrix();
+		}
+  }
+  numZ += .06;
+  rightX -= .04;
+  leftX += .04;
+  glutPostRedisplay();
+}
+
+void drawNumbers7(int value){
+	static float numZ = 0;
+  static float rightX = 0;
+  static float leftX = 0;
+  
+	if (value <= 9){
+		if (value%2 != 0){
+			glPushMatrix();
+			glTranslatef(leftX,0,numZ);
+			drawNumber(value);
+			glPopMatrix();
+		}
+		else{
+			glPushMatrix();
+			glTranslatef(rightX,0,numZ);
+			drawNumber(value);
+			glPopMatrix();
+		}
+  }
+  numZ += .06;
+  rightX -= .04;
+  leftX += .04;
+  glutPostRedisplay();
+}
+
+void drawNumbers8(int value){
+	static float numZ = 0;
+  static float rightX = 0;
+  static float leftX = 0;
+  
+	if (value <= 9){
+		if (value%2 != 0){
+			glPushMatrix();
+			glTranslatef(leftX,0,numZ);
+			drawNumber(value);
+			glPopMatrix();
+		}
+		else{
+			glPushMatrix();
+			glTranslatef(rightX,0,numZ);
+			drawNumber(value);
+			glPopMatrix();
+		}
+  }
+  numZ += .06;
+  rightX -= .04;
+  leftX += .04;
+  glutPostRedisplay();
+}
+
+void drawNumbers9(int value){
+	static float numZ = 0;
+  static float rightX = 0;
+  static float leftX = 0;
+  
+	if (value <= 9){
+		if (value%2 != 0){
+			glPushMatrix();
+			glTranslatef(leftX,0,numZ);
+			drawNumber(value);
+			glPopMatrix();
+		}
+		else{
+			glPushMatrix();
+			glTranslatef(rightX,0,numZ);
+			drawNumber(value);
+			glPopMatrix();
+		}
+  }
+  numZ += .06;
+  rightX -= .04;
+  leftX += .04;
+  glutPostRedisplay();
 }
 
 void display()
@@ -669,12 +874,10 @@ void display()
   
   static float alpha = 0;
   static float beta = 0;
-  static float numZ = 0;
-  static float rightX = 0;
-  static float leftX = 0;
+  static float timer = 0;
   
   // Move into the screen a bit
-  glTranslatef( 0, 0, -35 );
+  glTranslatef( 0, 0, -30 );
   
   // Start drawing the 5 blocks
   glPushMatrix();
@@ -713,64 +916,42 @@ void display()
   glPopMatrix();
   
   // Start drawing numbers 1-4 behind the left-most block
-  // stacked
   glPushMatrix(); 
-  glTranslatef(-10,-10,-14);
-  
-  glPushMatrix();
-  glTranslatef(leftX,0,numZ);
-  drawNumber(1);
-  glPopMatrix();
-  
-	glPushMatrix();
-	glTranslatef(leftX,0,numZ);
-	drawNumber(2);
+  glTranslatef(-10,-10,-18);
+
+	drawNumbers(1);
+	if (timer > 800){
+		drawNumbers3(3);
+	}
+	if (timer > 1600){
+		drawNumbers5(5);
+	}
+	if (timer > 2400){
+		drawNumbers7(7);
+	}
+	if (timer > 3200){
+		drawNumbers9(9);
+	}
 	glPopMatrix();
   
-  glPushMatrix();
-  glTranslatef(leftX,0,numZ);
-  drawNumber(3);
-  glPopMatrix();
-  
-  glPushMatrix();
-  glTranslatef(leftX,0,numZ);
-  drawNumber(4);
-  glPopMatrix();
-  
-  glPopMatrix();
-  
   // Start drawing numbers 5-9 behind the right-most block
-  // stacked
+
   glPushMatrix();
-  glTranslatef(10,-10,-14);
+  glTranslatef(10,-10,-18);
   
-  glPushMatrix();
-  glTranslatef(rightX,0,numZ);
-  drawNumber(5);
-  glPopMatrix();
-  
-  glPushMatrix();
-  glTranslatef(rightX,0,numZ);
-  drawNumber(6);
-  glPopMatrix();
-  
-  glPushMatrix();
-  glTranslatef(rightX,0,numZ);
-  drawNumber(7);
-  glPopMatrix();
-  
-  glPushMatrix();
-  glTranslatef(rightX,0,numZ);
-  drawNumber(8);
-  glPopMatrix();
-  
-  glPushMatrix();
-  glTranslatef(rightX,0,numZ);
-  drawNumber(9);
-  glPopMatrix();
-  
-  glPopMatrix();
-  
+	if (timer > 400){
+		drawNumbers2(2);
+	}
+	if (timer > 1200){
+		drawNumbers4(4);
+	}
+	if (timer > 2000){
+		drawNumbers6(6);
+	}
+	if (timer > 2800){
+		drawNumbers8(8);
+	}
+	glPopMatrix();
   // Initiate white background polygon
   glColor3ub(255,255,255);
   drawBackground();
@@ -779,9 +960,8 @@ void display()
   
   alpha += .3;
   beta -= .3;
-  numZ += .03;
-  rightX -= .03;
-  leftX += .03;
+  timer += 1;
+
   glutPostRedisplay();
 }
 
