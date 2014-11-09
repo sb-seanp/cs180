@@ -6,10 +6,8 @@
 void init(){
   glEnable(GL_DEPTH_TEST);
   glShadeModel(GL_FLAT);
-  /*glEnable(GL_LIGHTING);
+  glEnable(GL_LIGHTING);
   glEnable(GL_LIGHT0);
-  GLfloat lightpos[] = {0.5,1.,1.,0.};
-  glLightfv(GL_LIGHT0, GL_POSITION, lightpos);*/
 }
 
 // Draw white square background
