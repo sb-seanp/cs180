@@ -4,15 +4,19 @@
 #include <cstdlib>
 
 void init(){
+  GLfloat light_position[] = { 0.0, 10.0, -25.0, 1.0 };
   glEnable(GL_DEPTH_TEST);
-  glShadeModel(GL_FLAT);
+  glShadeModel(GL_SMOOTH);
+  glLightfv(GL_LIGHT0, GL_POSITION, light_position);
   glEnable(GL_LIGHTING);
   glEnable(GL_LIGHT0);
+  glEnable(GL_COLOR_MATERIAL);
 }
 
 // Draw white square background
 void drawBackground(){
   glBegin(GL_POLYGON);
+  glNormal3f(0,0,1);
   glVertex3f( 100, 100, -40);
   glVertex3f(-100, 100, -40);
   glVertex3f(-100,-100, -40);
@@ -26,6 +30,7 @@ void drawEave(){
 	
   // Top
   glBegin(GL_POLYGON);
+  glNormal3f(0,1,0);
   glVertex3f( 2.8, 2.8, 2.2);
   glVertex3f(-2.8, 2.8, 2.2);
   glVertex3f(-2.8, 2.8, 2.8);
@@ -34,6 +39,7 @@ void drawEave(){
   
   // Bottom
   glBegin(GL_POLYGON);
+  glNormal3f(0,-1,0);
   glVertex3f( 2.8, 2.2, 2.2);
   glVertex3f(-2.8, 2.2, 2.2);
   glVertex3f(-2.8, 2.2, 2.8);
@@ -42,6 +48,7 @@ void drawEave(){
   
   // Back
   glBegin(GL_POLYGON);
+  glNormal3f(0,0,-1);
   glVertex3f( 2.8, 2.8, 2.2);
   glVertex3f(-2.8, 2.8, 2.2);
   glVertex3f(-2.8, 2.2, 2.2);
@@ -50,6 +57,7 @@ void drawEave(){
   
   // Front
   glBegin(GL_POLYGON);
+  glNormal3f(0,0,1);
   glVertex3f( 2.8, 2.8, 2.8);
   glVertex3f(-2.8, 2.8, 2.8);
   glVertex3f(-2.8, 2.2, 2.8);
@@ -58,6 +66,7 @@ void drawEave(){
   
   // Left
   glBegin(GL_POLYGON);
+  glNormal3f(-1,0,0);
   glVertex3f(-2.8, 2.8, 2.2);
   glVertex3f(-2.8, 2.8, 2.8);
   glVertex3f(-2.8, 2.2, 2.8);
@@ -66,6 +75,7 @@ void drawEave(){
   
   // Right
   glBegin(GL_POLYGON);
+  glNormal3f(1,0,0);
   glVertex3f( 2.8, 2.8, 2.8);
   glVertex3f( 2.8, 2.8, 2.2);
   glVertex3f( 2.8, 2.2, 2.2);
@@ -80,6 +90,7 @@ void drawTriPrism(){
   
   // Front
   glBegin(GL_POLYGON);
+  glNormal3f(0,0,1);
   glVertex3f(   0, 1.0, 3.0);
   glVertex3f(-1.5,-1.0, 3.0);
   glVertex3f( 1.5,-1.0, 3.0);
@@ -87,6 +98,7 @@ void drawTriPrism(){
   
   // Back
   glBegin(GL_POLYGON);
+  glNormal3f(0,0,-1);
   glVertex3f(   0, 1.0, 2.5);
   glVertex3f(-1.5,-1.0, 2.5);
   glVertex3f( 1.5,-1.0, 2.5);
@@ -110,6 +122,7 @@ void drawTriPrism(){
   
   // Bottom
   glBegin(GL_POLYGON);
+  glNormal3f(0,-1,0);
   glVertex3f( 1.5,-1.0, 2.5);
   glVertex3f(-1.5,-1.0, 2.5);
   glVertex3f(-1.5,-1.0, 3.0);
@@ -121,6 +134,7 @@ void drawTriPrism(){
 void drawPlusRect(){
   // Top
   glBegin(GL_POLYGON);
+  glNormal3f(0,1,0);
   glVertex3f( 0.2, 1.0, 2.5);
   glVertex3f(-0.2, 1.0, 2.5);
   glVertex3f(-0.2, 1.0, 3.0);
@@ -129,6 +143,7 @@ void drawPlusRect(){
   
   // Bottom
   glBegin(GL_POLYGON);
+  glNormal3f(0,1,0);
   glVertex3f( 0.2,-1.0, 3.0);
   glVertex3f(-0.2,-1.0, 3.0);
   glVertex3f(-0.2,-1.0, 2.5);
@@ -137,6 +152,7 @@ void drawPlusRect(){
   
   // Back
   glBegin(GL_POLYGON);
+  glNormal3f(0,0,-1);
   glVertex3f( 0.2, 1.0, 2.5);
   glVertex3f(-0.2, 1.0, 2.5);
   glVertex3f(-0.2,-1.0, 2.5);
@@ -145,6 +161,7 @@ void drawPlusRect(){
   
   // Front
   glBegin(GL_POLYGON);
+  glNormal3f(0,0,1);
   glVertex3f( 0.2, 1.0, 3.0);
   glVertex3f(-0.2, 1.0, 3.0);
   glVertex3f(-0.2,-1.0, 3.0);
@@ -153,6 +170,7 @@ void drawPlusRect(){
   
   // Left
   glBegin(GL_POLYGON);
+  glNormal3f(-1,0,0);
   glVertex3f(-0.2, 1.0, 3.0);
   glVertex3f(-0.2, 1.0, 2.5);
   glVertex3f(-0.2,-1.0, 2.5);
@@ -161,6 +179,7 @@ void drawPlusRect(){
   
   // Right
   glBegin(GL_POLYGON);
+  glNormal3f(1,0,0);
   glVertex3f( 0.2, 1.0, 3.0);
   glVertex3f( 0.2, 1.0, 2.5);
   glVertex3f( 0.2,-1.0, 2.5);
@@ -185,6 +204,7 @@ void drawBlock(){
 
   // Top
   glBegin(GL_POLYGON);
+  glNormal3f(0,1,0);
   glVertex3f( 2.5, 2.5, 2.5);
   glVertex3f(-2.5, 2.5, 2.5);
   glVertex3f(-2.5, 2.5,-2.5);
@@ -193,6 +213,7 @@ void drawBlock(){
 
   // Front
   glBegin(GL_POLYGON);
+  glNormal3f(0,0,1);
   glVertex3f( 2.5, 2.5, 2.5);
   glVertex3f(-2.5, 2.5, 2.5);
   glVertex3f(-2.5,-2.5, 2.5);
@@ -201,6 +222,7 @@ void drawBlock(){
 
   // Bottom
   glBegin(GL_POLYGON);
+  glNormal3f(0,-1,0);
   glVertex3f( 2.5,-2.5, 2.5);
   glVertex3f(-2.5,-2.5, 2.5);
   glVertex3f(-2.5,-2.5,-2.5);
@@ -209,6 +231,7 @@ void drawBlock(){
 
   // Back
   glBegin(GL_POLYGON);
+  glNormal3f(0,0,-1);
   glVertex3f( 2.5, 2.5,-2.5);
   glVertex3f(-2.5, 2.5,-2.5);
   glVertex3f(-2.5,-2.5,-2.5);
@@ -217,6 +240,7 @@ void drawBlock(){
 
   // Right
   glBegin(GL_POLYGON);
+  glNormal3f(1,0,0);
   glVertex3f( 2.5, 2.5, 2.5);
   glVertex3f( 2.5, 2.5,-2.5);
   glVertex3f( 2.5,-2.5,-2.5);
@@ -225,6 +249,7 @@ void drawBlock(){
   
   // Left
   glBegin(GL_POLYGON);
+  glNormal3f(-1,0,0);
   glVertex3f( -2.5, 2.5, 2.5);
   glVertex3f( -2.5, 2.5,-2.5);
   glVertex3f( -2.5,-2.5,-2.5);
@@ -340,6 +365,7 @@ void drawBlock(){
 void drawRect(){
   // Top
   glBegin(GL_POLYGON);
+  glNormal3f(0,1,0);
   glVertex3f( 0.5, 2.5,-0.5);
   glVertex3f(-0.5, 2.5,-0.5);
   glVertex3f(-0.5, 2.5, 0.5);
@@ -348,6 +374,7 @@ void drawRect(){
   
   // Bottom
   glBegin(GL_POLYGON);
+  glNormal3f(0,-1,0);
   glVertex3f( 0.5,-2.5,-0.5);
   glVertex3f(-0.5,-2.5,-0.5);
   glVertex3f(-0.5,-2.5, 0.5);
@@ -356,6 +383,7 @@ void drawRect(){
   
   // Back
   glBegin(GL_POLYGON);
+  glNormal3f(0,0,-1);
   glVertex3f( 0.5, 2.5,-0.5);
   glVertex3f(-0.5, 2.5,-0.5);
   glVertex3f(-0.5,-2.5,-0.5);
@@ -364,6 +392,7 @@ void drawRect(){
   
   // Front
   glBegin(GL_POLYGON);
+  glNormal3f(0,0,1);
   glVertex3f( 0.5, 2.5, 0.5);
   glVertex3f(-0.5, 2.5, 0.5);
   glVertex3f(-0.5,-2.5, 0.5);
@@ -372,6 +401,7 @@ void drawRect(){
   
   // Left
   glBegin(GL_POLYGON);
+  glNormal3f(-1,0,0);
   glVertex3f( 0.5, 2.5, 0.5);
   glVertex3f( 0.5, 2.5,-0.5);
   glVertex3f( 0.5,-2.5,-0.5);
@@ -380,6 +410,7 @@ void drawRect(){
   
   // Right
   glBegin(GL_POLYGON);
+  glNormal3f(1,0,0);
   glVertex3f(-0.5, 2.5, 0.5);
   glVertex3f(-0.5, 2.5,-0.5);
   glVertex3f(-0.5,-2.5,-0.5);
@@ -953,6 +984,13 @@ void display()
   // Initiate white background polygon
   glColor3ub(255,255,255);
   drawBackground();
+
+  glColor3ub(255,255,255);
+  glPushMatrix();
+  glRotatef(-90,1.0f,0.0f,0.0f);
+  glTranslatef(0.0,-12,0.0);
+  drawBackground();
+  glPopMatrix();
   
   glutSwapBuffers();
   
