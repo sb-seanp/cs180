@@ -4,6 +4,7 @@
 #include <cstdlib>
 
 void init(){
+  // Enable depth, lighting, position the light, and change materials
   GLfloat light_position[] = { 0.0, 10.0, -25.0, 1.0 };
   glEnable(GL_DEPTH_TEST);
   glShadeModel(GL_SMOOTH);
@@ -662,6 +663,7 @@ void drawNumber(int num){
   glPopMatrix();
 }
 
+// Animate and draw numbers to screen
 void drawNumbers(int value){
 	static float numZ = 0;
   static float rightX = 0;
@@ -927,7 +929,7 @@ void display()
   glTranslatef(10,-10,0);
   glColor3ub(255,0,255);
   glRotatef(alpha,0.0f,1.0f,0.0f);
-	drawBlock();
+  drawBlock();
   glPopMatrix();
   
   glPushMatrix();
@@ -947,44 +949,47 @@ void display()
   // Start drawing numbers 1-4 behind the left-most block
   glPushMatrix(); 
   glTranslatef(-10,-10,-18);
-
-	drawNumbers(1);
-	if (timer > 800){
-		drawNumbers3(3);
-	}
-	if (timer > 1600){
-		drawNumbers5(5);
-	}
-	if (timer > 2400){
-		drawNumbers7(7);
-	}
-	if (timer > 3200){
-		drawNumbers9(9);
-	}
-	glPopMatrix();
   
+  // Set timer for every MainLoop
+  drawNumbers(1);
+  if (timer > 800){
+    drawNumbers3(3);
+  }
+  if (timer > 1600){
+    drawNumbers5(5);
+  }
+  if (timer > 2400){
+    drawNumbers7(7);
+	}
+  if (timer > 3200){
+    drawNumbers9(9);
+  }
+  glPopMatrix();
+	
   // Start drawing numbers 5-9 behind the right-most block
 
   glPushMatrix();
   glTranslatef(10,-10,-18);
   
-	if (timer > 400){
-		drawNumbers2(2);
-	}
-	if (timer > 1200){
-		drawNumbers4(4);
-	}
-	if (timer > 2000){
-		drawNumbers6(6);
-	}
-	if (timer > 2800){
-		drawNumbers8(8);
-	}
-	glPopMatrix();
+  if (timer > 400){
+    drawNumbers2(2);
+  }
+  if (timer > 1200){
+    drawNumbers4(4);
+  }
+  if (timer > 2000){
+    drawNumbers6(6);
+  }
+  if (timer > 2800){
+    drawNumbers8(8);
+  }
+  glPopMatrix();
+
   // Initiate white background polygon
   glColor3ub(255,255,255);
   drawBackground();
 
+  // Draw a horizontal one
   glColor3ub(255,255,255);
   glPushMatrix();
   glRotatef(-90,1.0f,0.0f,0.0f);
