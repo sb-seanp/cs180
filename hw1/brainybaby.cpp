@@ -2,6 +2,10 @@
 
 #include <GL/glut.h>
 #include <cstdlib>
+#include <cstdio>
+#include <iostream>
+
+using namespace std;
 
 void init(){
   // Enable depth, lighting, position the light, and change materials
@@ -12,6 +16,56 @@ void init(){
   glEnable(GL_LIGHTING);
   glEnable(GL_LIGHT0);
   glEnable(GL_COLOR_MATERIAL);
+}
+
+GLuint loadTexture(const char* filename) {
+  //GLuint texture;
+  char header[54];
+  int width, height;
+  int dataPos;
+  int imageSize;
+  char* data;
+  FILE* file;
+  file = fopen(filename, "rb");
+  if (fread(header, 1, 54, file) != 54){
+    cout << "Not bmp\n";
+    return false;
+  }
+  if (header[0] != 'B' || header[1] != 'M'){
+    cout << "Not bmp\n";
+    return 0;
+  }
+
+  dataPos = *(int*)&(header[0x0A]);
+  imageSize = *(int*)&(header[0x22]);
+  width = *(int*)&(header[0x12]);
+  height = *(int*)&(header[0x16]);
+
+  if (imageSize == 0) imageSize = width*height*3;
+  if (dataPos == 0) dataPos = 54;
+
+  data = new char [imageSize];
+  fread(data, 1, imageSize, file);
+  fclose(file);
+
+  /* for (int i = 0; i < width*height; i++){
+    int index = i*3;
+    char B, R;
+    B = data[index];
+    R = data[index + 2];
+    data[index] = R;
+    data[index + 2] = B;
+    }*/
+  
+  GLuint textureID;
+  glGenTextures(1, &textureID);
+  glBindTexture(GL_TEXTURE_2D, textureID);
+  glTexImage2D(GL_TEXTURE_2D, 0,GL_RGB, width, height, 0, GL_BGR, GL_UNSIGNED_BYTE, data);
+  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+  free( data );
+
+  return textureID;
 }
 
 // Draw white square background
@@ -202,60 +256,90 @@ void drawPlus(){
 }
 
 void drawBlock(){
+  glEnable(GL_TEXTURE_2D);
+  glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_DECAL);
+  GLuint texture = loadTexture("./wood.bmp");
+  glBindTexture(GL_TEXTURE_2D, texture);
 
   // Top
   glBegin(GL_POLYGON);
   glNormal3f(0,1,0);
+  glTexCoord2f(0.0,0.0);
   glVertex3f( 2.5, 2.5, 2.5);
+  glTexCoord2f(0.0,1.0);
   glVertex3f(-2.5, 2.5, 2.5);
+  glTexCoord2f(1.0,1.0);
   glVertex3f(-2.5, 2.5,-2.5);
+  glTexCoord2f(1.0,0.0);
   glVertex3f( 2.5, 2.5,-2.5);
   glEnd();
 
   // Front
   glBegin(GL_POLYGON);
   glNormal3f(0,0,1);
+  glTexCoord2f(0.0,0.0);
   glVertex3f( 2.5, 2.5, 2.5);
+  glTexCoord2f(0.0,1.0);
   glVertex3f(-2.5, 2.5, 2.5);
+  glTexCoord2f(1.0,1.0);
   glVertex3f(-2.5,-2.5, 2.5);
+  glTexCoord2f(1.0,0.0);
   glVertex3f( 2.5,-2.5, 2.5);
   glEnd();
 
   // Bottom
   glBegin(GL_POLYGON);
   glNormal3f(0,-1,0);
+  glTexCoord2f(0.0,0.0);
   glVertex3f( 2.5,-2.5, 2.5);
+  glTexCoord2f(0.0,1.0);
   glVertex3f(-2.5,-2.5, 2.5);
+  glTexCoord2f(1.0,1.0);
   glVertex3f(-2.5,-2.5,-2.5);
+  glTexCoord2f(1.0,0.0);
   glVertex3f( 2.5,-2.5,-2.5);
   glEnd();
 
   // Back
   glBegin(GL_POLYGON);
   glNormal3f(0,0,-1);
+  glTexCoord2f(0.0,0.0);
   glVertex3f( 2.5, 2.5,-2.5);
+  glTexCoord2f(0.0,1.0);
   glVertex3f(-2.5, 2.5,-2.5);
+  glTexCoord2f(1.0,1.0);
   glVertex3f(-2.5,-2.5,-2.5);
+  glTexCoord2f(1.0,0.0);
   glVertex3f( 2.5,-2.5,-2.5);
   glEnd();
 
   // Right
   glBegin(GL_POLYGON);
   glNormal3f(1,0,0);
+  glTexCoord2f(0.0,0.0);
   glVertex3f( 2.5, 2.5, 2.5);
+  glTexCoord2f(0.0,1.0);
   glVertex3f( 2.5, 2.5,-2.5);
+  glTexCoord2f(1.0,1.0);
   glVertex3f( 2.5,-2.5,-2.5);
+  glTexCoord2f(1.0,0.0);
   glVertex3f( 2.5,-2.5, 2.5);
   glEnd();
   
   // Left
   glBegin(GL_POLYGON);
   glNormal3f(-1,0,0);
+  glTexCoord2f(0.0,0.0);
   glVertex3f( -2.5, 2.5, 2.5);
+  glTexCoord2f(0.0,1.0);
   glVertex3f( -2.5, 2.5,-2.5);
+  glTexCoord2f(1.0,1.0);
   glVertex3f( -2.5,-2.5,-2.5);
+  glTexCoord2f(1.0,0.0);
   glVertex3f( -2.5,-2.5, 2.5);
   glEnd();
+
+  glDisable(GL_TEXTURE_2D);
   
   // Draw triangular prisms on faces
   drawPlus();
@@ -1023,5 +1107,6 @@ int main(int argc, char **argv){
   init();
   
   glutMainLoop();
+  glDisable(GL_TEXTURE_2D);
   return 0;
 }
