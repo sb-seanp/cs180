@@ -10,22 +10,6 @@
 
 using namespace std;
 
-vector<float> mymatrix;
-
-stack<vector<float> > mystack;
-
-void PushMatrix(){
-  vector<float> copy = mystack.top();
-  mystack.push(copy);
-}
-
-void PopMatrix(){
-  mystack.pop();
-}
-
-void Rotate(){
-  
-
 void init(){
   // Enable depth, lighting, position the light, and change materials
   GLfloat light_position[] = { 0.0, 10.0, -25.0, 1.0 };
