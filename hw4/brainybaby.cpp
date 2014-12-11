@@ -4,8 +4,27 @@
 #include <cstdlib>
 #include <cstdio>
 #include <iostream>
+#include <cmath>
+#include <stack>
+#include <vector>
 
 using namespace std;
+
+vector<float> mymatrix;
+
+stack<vector<float> > mystack;
+
+void PushMatrix(){
+  vector<float> copy = mystack.top();
+  mystack.push(copy);
+}
+
+void PopMatrix(){
+  mystack.pop();
+}
+
+void Rotate(){
+  
 
 void init(){
   // Enable depth, lighting, position the light, and change materials
