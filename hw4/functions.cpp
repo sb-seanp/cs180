@@ -93,6 +93,32 @@ void setIdentity(){
 	mystack.push(mymatrix);
 }
 
+vector<vector<float> > Multiply4x4(vector<vector<float> > a, vector<vector<float> > b){
+	vector<vector<float> > result(4, vector<float>(4));
+	for (int i = 0; i < 4; i++){
+		for (int j = 0; j < 4; j++){
+			result[i][j] = 0;
+			for (int k = 0; k < 4; k++){
+				result[i][j] = result[i][j] + a[i][k]*b[k][j];
+			}
+		}
+	}
+	return result;
+}
+
+vector<vector<float> > Multiply4x1(vector<vector<float> > a, vector<vector<float> > b){
+	vector<vector<float> > result(4, vector<float>(4));
+	for (int i = 0; i < 4; i++){
+		for (int j = 0; j < 1; j++){
+			result[i][j] = 0;
+			for (int k = 0; k < 4; k++){
+				result[i][j] = result[i][j] + a[i][k]*b[k][j];
+			}
+		}
+	}
+	return result;
+}
+
 void printStack(){
 	vector<vector<float> > matrix = mystack.top();
 	
@@ -104,15 +130,23 @@ void printStack(){
 	cout << endl;
 }
 
+void printVector(vector<vector<float> > point){
+	for(int i = 0; i < 4; i++){
+		for(int j = 0; j < 1; j++)
+			cout << point[i][j] << " ";
+		cout << endl;
+	}
+	cout << endl;
+}
+
 int main(int argc, char **argv){
-	//vector<float> input = {0,1,0}
+	vector<vector<float> > point(4, vector<float>(1,2));
+	point[3][0] = 1;
 	setIdentity();
 	printStack();
-	Translatef(0,1,0);
+	Scalef(1,2,1);
 	printStack();
-	Scalef(1,1,1);
-	printStack();
-	Rotatef(1, 1, 0, 0);
-	printStack();
+	vector<vector<float> > result = Multiply4x1(mystack.top(), point);
+	printVector(result);
 	return 0;
 }
