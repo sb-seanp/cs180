@@ -10,14 +10,6 @@
 
 using namespace std;
 
-void initCanvas(char *canvas[][600]){
-  for (int i = 0; i < 600; i++){
-    for (int j = 0; j < 600; i++){
-      canvas[i][j] = 255;
-    }
-  }
-}
-
 void drawCanvas(char* canvas[][600], FILE* pgm){
   fwrite(canvas, sizeof(canvas), 1, pgm);
 }

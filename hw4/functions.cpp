@@ -107,15 +107,15 @@ vector<vector<float> > Multiply4x4(vector<vector<float> > a, vector<vector<float
 }
 
 vector<vector<float> > Multiply4x1(vector<vector<float> > a, vector<vector<float> > b){
-  vector<vector<float> > result(4, vector<float>(4));
+  vector<vector<float> > result(4, vector<float>(1));
   for (int i = 0; i < 4; i++){
-    for (int j = 0; j < 1; j++){
-      result[i][j] = 0;
-      for (int k = 0; k < 4; k++){
-	result[i][j] = result[i][j] + a[i][k]*b[k][j];
-      }
+    int j = 0;
+    result[i][j] = 0;
+    for (int k = 0; k < 4; k++){
+      result[i][j] = result[i][j] + a[i][k]*b[k][j];
     }
   }
+  result[4][0] = 1;
   return result;
 }
 
@@ -134,6 +134,15 @@ void printVector(vector<vector<float> > point){
   for(int i = 0; i < 4; i++){
     for(int j = 0; j < 1; j++)
       cout << point[i][j] << " ";
+    cout << endl;
+  }
+  cout << endl;
+}
+
+void printMatrix(vector<vector<float > > matrix){
+  for(int i = 0; i < 4; i++){
+    for(int j = 0; j < 4; j++)
+      cout << matrix[i][j] << " ";
     cout << endl;
   }
   cout << endl;

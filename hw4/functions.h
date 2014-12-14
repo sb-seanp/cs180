@@ -15,6 +15,7 @@ vector<vector<float> > Multiply4x4(vector<vector<float> >, vector<vector<float> 
 vector<vector<float> > Multiply4x1(vector<vector<float> >, vector<vector<float> >);
 
 void printStack();
-void printVector();
+void printVector(vector<vector<float> >);
+void printMatrix(vector<vector<float> >);
 
 #endif
