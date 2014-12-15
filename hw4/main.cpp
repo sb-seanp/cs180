@@ -1,4 +1,4 @@
-// Sean Prasertsit, 10-24-2014
+// Sean Prasertsit, 10-24-2025
 
 #include <cstdlib>
 #include <cstdio>
@@ -11,7 +11,7 @@
 #include <sstream>
 #include "functions.h"
 
-#define DIM 300
+#define DIM 600
 #define MAX_COLOR 255
 
 using namespace std;
@@ -23,9 +23,9 @@ vector<vector<float> > pmatrix(4, vector<float>(4));
 void initCanvas();
 void drawCanvas(FILE*);
 void drawLine(stack<vector<vector<float> > >);
-void clearPolygon();
-void vertex(float, float, float);
-void drawPolygon();
+void glBegin();
+void glVertex3f(float, float, float);
+void glEnd();
 void Projection(float, float, float, float, float, float);
 void drawBlock();
 
@@ -34,14 +34,14 @@ int main(int argc, char **argv){
   // Set up canvas
   initCanvas();
 
-  Projection(0, 300, 0, 300, 0, 300);
+  //Projection(0, 300, 0, 300, 0, 300);
   setIdentity();
-  Translatef(150, 150, -100);
+  glTranslatef(300, 300, -150);
   printStack();
   string image = "image";
   string ext = ".pgm";
   int r = 0;
-  for (int u = 0; u < 10; u++){
+  for (int u = 0; u < 300; u++){
     ostringstream temp;
     temp << u;
     string t = temp.str();
@@ -51,15 +51,35 @@ int main(int argc, char **argv){
     // Print header
     const char *comment = "# Sean Prasertsit, binary image";
     fprintf(pgm, "P5\n %s\n %d\n %d\n %d\n", comment, DIM, DIM, MAX_COLOR);
-    PushMatrix();
-    Rotatef(r,1,0,0);
+    glPushMatrix();
+    glRotatef(r,1,0,0);
+    //Scalef(.5,.5,1);
     drawBlock();
-    PopMatrix();
-    PushMatrix();
-    Translatef(0, -50, 0);
-    Rotatef(r,1,0,0);
+    glPopMatrix();
+    glPushMatrix();
+    glTranslatef(0, -100, 0);
+    glRotatef(-r,1,0,0);
+    glScalef(1.3,1.3,1.3);
     drawBlock();
-    PopMatrix();
+    glPopMatrix();
+    glPushMatrix();
+    glTranslatef(0, 100, 0);
+    glRotatef(-r,1,0,0);
+    glScalef(1.3,1.3,1.3);
+    drawBlock();
+    glPopMatrix();
+    glPushMatrix();
+    glTranslatef(0, 200, 0);
+    glRotatef(r,1,0,0);
+    glScalef(1.7,1.7,1.7);
+    drawBlock();
+    glPopMatrix();
+    glPushMatrix();
+    glTranslatef(0, -200, 0);
+    glRotatef(r,1,0,0);
+    glScalef(1.7,1.7,1.7);
+    drawBlock();
+    glPopMatrix();
     drawCanvas(pgm);
     fclose(pgm);
     initCanvas();
@@ -174,20 +194,20 @@ void drawLine(vector<vector<float> > origin, vector<vector<float> > end){
 }
   
 void Projection(float l, float r, float b, float t, float n, float f){
-  pmatrix[0][0] = 2/(r - l);
-  //pmatrix[0][3] = -(r + l)/(r - l);
-  pmatrix[1][1] = 2/(t - b);
-  // pmatrix[1][3] = -(t + b)/(t - b);
-  pmatrix[2][2] = -2/(f - n);
-  //pmatrix[2][3] = -(f + n)/(f - n);
-  pmatrix[3][3] = 1;
+  pmatrix[0][0] = (2*n)/(r - l);
+  pmatrix[0][2] = (r + l)/(r - l);
+  pmatrix[1][1] = (2*n)/(t - b);
+  pmatrix[1][2] = (t + b)/(t - b);
+  pmatrix[2][2] = -(f + n)/(f - n);
+  pmatrix[2][3] = (-2*f*n)/(f - n);
+  pmatrix[3][2] = -1;
 }
 
-void clearPolygon(){
+void glBegin(){
   while (!polygon.empty())
     polygon.pop();
 }
-void vertex(float x, float y, float z){
+void glVertex3f(float x, float y, float z){
   vector<vector<float> > v(4, vector<float>(1));
   v[0][0] = x;
   v[1][0] = y;
@@ -196,7 +216,7 @@ void vertex(float x, float y, float z){
   polygon.push(v);
 }
 
-void drawPolygon(){
+void glEnd(){
   vector<vector<float> > first = polygon.front();
   first = Multiply4x1(TopMatrix(), first);
   //first = Multiply4x1(pmatrix, first);
@@ -220,50 +240,51 @@ void drawPolygon(){
 
 void drawBlock(){
   // Top
-  clearPolygon();
-  vertex( 25, 25, 25);
-  vertex(-25, 25, 25);
-  vertex(-25, 25,-25);
-  vertex( 25, 25,-25);
-  drawPolygon();
+  glBegin();
+  glVertex3f( 25, 25, 25);
+  glVertex3f(-25, 25, 25);
+  glVertex3f(-25, 25,-25);
+  glVertex3f( 25, 25,-25);
+  glEnd();
 
   // Front
-  clearPolygon();
-  vertex( 25, 25, 25);
-  vertex(-25, 25, 25);
-  vertex(-25,-25, 25);
-  vertex( 25,-25, 25);
-  drawPolygon();
+  glBegin();
+  glVertex3f( 25, 25, 25);
+  glVertex3f(-25, 25, 25);
+  glVertex3f(-25,-25, 25);
+  glVertex3f( 25,-25, 25);
+  glEnd();
 
   // Bottom
-  clearPolygon();
-  vertex( 25,-25, 25);
-  vertex(-25,-25, 25);
-  vertex(-25,-25,-25);
-  vertex( 25,-25,-25);
-  drawPolygon();
+  glBegin();
+  glVertex3f( 25,-25, 25);
+  glVertex3f(-25,-25, 25);
+  glVertex3f(-25,-25,-25);
+  glVertex3f( 25,-25,-25);
+  glEnd();
 
   // Back
-  clearPolygon();
-  vertex( 25, 25,-25);
-  vertex(-25, 25,-25);
-  vertex(-25,-25,-25);
-  vertex( 25,-25,-25);
-  drawPolygon();
+  glBegin();
+  glVertex3f( 25, 25,-25);
+  glVertex3f(-25, 25,-25);
+  glVertex3f(-25,-25,-25);
+  glVertex3f( 25,-25,-25);
+  glEnd();
 
   // Right
-  clearPolygon();
-  vertex( 25, 25, 25);
-  vertex( 25, 25,-25);
-  vertex( 25,-25,-25);
-  vertex( 25,-25, 25);
-  drawPolygon();
+  glBegin();
+  glVertex3f( 25, 25, 25);
+  glVertex3f( 25, 25,-25);
+  glVertex3f( 25,-25,-25);
+  glVertex3f( 25,-25, 25);
+  glEnd();
   
   // Left
-  clearPolygon();
-  vertex( -25, 25, 25);
-  vertex( -25, 25,-25);
-  vertex( -25,-25,-25);
-  vertex( -25,-25, 25);
-  drawPolygon();
+  glBegin();
+  glVertex3f( -25, 25, 25);
+  glVertex3f( -25, 25,-25);
+  glVertex3f( -25,-25,-25);
+  glVertex3f( -25,-25, 25);
+  glEnd();
 }
+

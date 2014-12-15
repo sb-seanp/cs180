@@ -4,13 +4,13 @@
 #include <vector>
 #include "functions.cpp"
 
-void PushMatrix();
+void glPushMatrix();
 vector<vector<float> > TopMatrix();
-void PopMatrix();
+void glPopMatrix();
 
-void Rotatef(float, float, float, float);
-void Translatef(float, float, float);
-void Scalef(float, float, float);
+void glRotatef(float, float, float, float);
+void glTranslatef(float, float, float);
+void glScalef(float, float, float);
 void setIdentity();
 vector<vector<float> > Multiply4x4(vector<vector<float> >, vector<vector<float> >);
 vector<vector<float> > Multiply4x1(vector<vector<float> >, vector<float>);

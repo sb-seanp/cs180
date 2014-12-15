@@ -15,7 +15,7 @@ vector<vector<float> > mymatrix(4, vector<float>(4));
 
 stack<vector<vector<float> > > mystack;
 
-void PushMatrix(){
+void glPushMatrix(){
   vector<vector<float> > copy = mystack.top();
   mystack.push(copy);
 }
@@ -24,11 +24,11 @@ vector<vector<float> > TopMatrix(){
   return mystack.top();
 }
 
-void PopMatrix(){
+void glPopMatrix(){
   mystack.pop();
 }
 
-void Rotatef(float angle, float x, float y, float z){
+void glRotatef(float angle, float x, float y, float z){
   vector<vector<float> > matrix = mystack.top();
 
   float a = angle*M_PI/180.0;
@@ -68,7 +68,7 @@ void Rotatef(float angle, float x, float y, float z){
   mystack.push(matrix);
 }
 
-void Translatef(float x, float y, float z){
+void glTranslatef(float x, float y, float z){
   vector<vector<float> > matrix = mystack.top();
 	
   matrix[0][3] += matrix[0][0]*x + matrix[0][1]*y + matrix[0][2]*z;
@@ -80,7 +80,7 @@ void Translatef(float x, float y, float z){
   mystack.push(matrix);
 }
 
-void Scalef(float x, float y, float z){
+void glScalef(float x, float y, float z){
   vector<vector<float> > matrix = mystack.top();
 	
   matrix[0][0] *= x; 
@@ -111,7 +111,6 @@ vector<vector<float> > Multiply4x4(vector<vector<float> > a, vector<vector<float
 }
 
 vector<vector<float> > Multiply4x1(vector<vector<float> > a, vector<vector<float> > b){
-  cout << "start";
   vector<vector<float> > result(4, vector<float>(1));
   for (int i = 0; i < 4; i++)
     result[i][0] = 0;
