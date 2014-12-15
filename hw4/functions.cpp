@@ -15,19 +15,23 @@ vector<vector<float> > mymatrix(4, vector<float>(4));
 
 stack<vector<vector<float> > > mystack;
 
+// GL_PUSH_MATRIX
 void glPushMatrix(){
   vector<vector<float> > copy = mystack.top();
   mystack.push(copy);
 }
 
+// GRAB TOPMOST MATRIX
 vector<vector<float> > TopMatrix(){
   return mystack.top();
 }
 
+// GL_POP_MATRIX
 void glPopMatrix(){
   mystack.pop();
 }
 
+// GL_ROTATE
 void glRotatef(float angle, float x, float y, float z){
   vector<vector<float> > matrix = mystack.top();
 
@@ -68,6 +72,7 @@ void glRotatef(float angle, float x, float y, float z){
   mystack.push(matrix);
 }
 
+// GL_TRANSLATE
 void glTranslatef(float x, float y, float z){
   vector<vector<float> > matrix = mystack.top();
 	
@@ -80,6 +85,7 @@ void glTranslatef(float x, float y, float z){
   mystack.push(matrix);
 }
 
+// GL_SCALE
 void glScalef(float x, float y, float z){
   vector<vector<float> > matrix = mystack.top();
 	
@@ -91,12 +97,14 @@ void glScalef(float x, float y, float z){
   mystack.push(matrix);
 }
 
+// SET IDENTITY MATRIX
 void setIdentity(){
   for (int i = 0; i < 4; i++)
     mymatrix[i][i] = 1;
   mystack.push(mymatrix);
 }
 
+// MULTIPLY TWO 4X4 MATRICES
 vector<vector<float> > Multiply4x4(vector<vector<float> > a, vector<vector<float> > b){
   vector<vector<float> > result(4, vector<float>(4));
   for (int i = 0; i < 4; i++){
@@ -110,6 +118,7 @@ vector<vector<float> > Multiply4x4(vector<vector<float> > a, vector<vector<float
   return result;
 }
 
+// MULTIPLY A 4X4 MATRIX WITH A VECTOR
 vector<vector<float> > Multiply4x1(vector<vector<float> > a, vector<vector<float> > b){
   vector<vector<float> > result(4, vector<float>(1));
   for (int i = 0; i < 4; i++)
@@ -122,6 +131,7 @@ vector<vector<float> > Multiply4x1(vector<vector<float> > a, vector<vector<float
   return result;
 }
 
+// MULTIPLY TWO VECTORS
 vector<vector<float> > Multiply1x1(vector<vector<float> > a, vector<vector<float> > b){
   vector<vector<float> > result(1, vector<float>(1));
   for (int i = 0; i < 4; i++){
@@ -157,23 +167,3 @@ void printMatrix(vector<vector<float > > matrix){
   }
   cout << endl;
 }
-
-/*FILE* openFile(char* input){
-  const int dimx = 600, dimy = 600;
-  const int MaxColor = 255;
-  FILE* pgm = fopen(input, "wb");
-  const char *comment = "# Sean Prasertsit, binary image";
-  // Print header
-  fprintf(pgm, "P5\n %s\n %d\n %d\n %d\n", comment, dimx, dimy, MaxColor);
-
-  char data[dimx][dimy];
-  int i, j;
-  
-  for (i = 0; i < dimx; ++i) {
-    for (j = 0; j < dimy; ++j) {
-      data[i][j] = (i + j) & 255;
-    }
-  }
-  fwrite(data, sizeof(data), 1, pgm);
-  cout << sizeof(pgm);
-  fclose(pgm);*/

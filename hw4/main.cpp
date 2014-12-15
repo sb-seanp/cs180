@@ -88,6 +88,7 @@ int main(int argc, char **argv){
   return 0;
 }
 
+// DRAW WHITE CANVAS
 void initCanvas(){
   char white = 255;
   for (int i = 0; i < DIM; i++){
@@ -97,10 +98,12 @@ void initCanvas(){
   }
 }
 
+// WRITE TO FILE
 void drawCanvas(FILE* pgm){
   fwrite(canvas, sizeof(canvas), 1, pgm);
 }
 
+// DRAW A LINE
 void drawLine(vector<vector<float> > origin, vector<vector<float> > end){
   char black = 20;
 
@@ -111,49 +114,46 @@ void drawLine(vector<vector<float> > origin, vector<vector<float> > end){
 
  
   float x,y,dx,dy,dx1,dy1,px,py,xe,ye,i;
-  dx=x2-x1;
-  dy=y2-y1;
-  dx1=fabs(dx);
-  dy1=fabs(dy);
-  px=2*dy1-dx1;
-  py=2*dx1-dy1;
-  if(dy1<=dx1)
-    {
-      if(dx>=0)
-	{
-	  x=x1;
-	  y=y1;
-	  xe=x2;
-	}
-      else
-	{
-	  x=x2;
-	  y=y2;
-	  xe=x1;
-	}
-      canvas[(int)x][(int)y] = black;
-      for(i=0;x<xe;i++)
-	{
-	  x=x+1;
-	  if(px<0)
-	    {
-	      px=px+2*dy1;
-	    }
-	  else
-	    {
-	      if((dx<0 && dy<0) || (dx>0 && dy>0))
-		{
-		  y=y+1;
-		}
-	      else
-		{
-		  y=y-1;
-		}
-	      px=px+2*(dy1-dx1);
-	    }
-	  canvas[(int)x][(int)y] = black;
-	}
+  dx = x2-x1;
+  dy = y2-y1;
+  dx1 = fabs(dx);
+  dy1 = fabs(dy);
+  px = 2*dy1-dx1;
+  py = 2*dx1-dy1;
+  if (dy1 <= dx1){
+    if (dx >= 0){
+      x=x1;
+      y=y1;
+      xe=x2;
     }
+    else{
+      x=x2;
+      y=y2;
+      xe=x1;
+    }
+    canvas[(int)x][(int)y] = black;
+    for(i=0;x<xe;i++)
+      {
+	x=x+1;
+	if(px<0)
+	  {
+	    px=px+2*dy1;
+	  }
+	else
+	  {
+	    if((dx<0 && dy<0) || (dx>0 && dy>0))
+	      {
+		y=y+1;
+	      }
+	    else
+	      {
+		y=y-1;
+	      }
+	    px=px+2*(dy1-dx1);
+	  }
+	canvas[(int)x][(int)y] = black;
+      }
+  }
   else
     {
       if(dy>=0)
@@ -192,7 +192,8 @@ void drawLine(vector<vector<float> > origin, vector<vector<float> > end){
 	}
     }
 }
-  
+
+// PROJECTION MATRIX
 void Projection(float l, float r, float b, float t, float n, float f){
   pmatrix[0][0] = (2*n)/(r - l);
   pmatrix[0][2] = (r + l)/(r - l);
@@ -203,10 +204,12 @@ void Projection(float l, float r, float b, float t, float n, float f){
   pmatrix[3][2] = -1;
 }
 
+// EMPTY VERTEX QUEUE
 void glBegin(){
   while (!polygon.empty())
     polygon.pop();
 }
+// ADD VERTIX TO QUEUE
 void glVertex3f(float x, float y, float z){
   vector<vector<float> > v(4, vector<float>(1));
   v[0][0] = x;
@@ -216,6 +219,7 @@ void glVertex3f(float x, float y, float z){
   polygon.push(v);
 }
 
+// DRAW VERTICES IN QUEUE
 void glEnd(){
   vector<vector<float> > first = polygon.front();
   first = Multiply4x1(TopMatrix(), first);
@@ -238,6 +242,7 @@ void glEnd(){
   polygon.pop();
 }
 
+// DRAW ONE BLOCK
 void drawBlock(){
   // Top
   glBegin();
