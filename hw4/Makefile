@@ -1,2 +1,2 @@
 test: main.cpp functions.h functions.cpp
-	g++ -o $@ main.cpp functions.h
+	g++ -o $@ main.cpp functions.h -Wall -g

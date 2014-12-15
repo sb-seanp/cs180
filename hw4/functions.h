@@ -5,6 +5,7 @@
 #include "functions.cpp"
 
 void PushMatrix();
+vector<vector<float> > TopMatrix();
 void PopMatrix();
 
 void Rotatef(float, float, float, float);
@@ -12,7 +13,8 @@ void Translatef(float, float, float);
 void Scalef(float, float, float);
 void setIdentity();
 vector<vector<float> > Multiply4x4(vector<vector<float> >, vector<vector<float> >);
-vector<vector<float> > Multiply4x1(vector<vector<float> >, vector<vector<float> >);
+vector<vector<float> > Multiply4x1(vector<vector<float> >, vector<float>);
+vector<vector<float> > Multiply1x1(vector<vector<float> >, vector<vector<float> >);
 
 void printStack();
 void printVector(vector<vector<float> >);

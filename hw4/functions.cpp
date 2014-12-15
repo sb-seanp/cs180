@@ -20,6 +20,10 @@ void PushMatrix(){
   mystack.push(copy);
 }
 
+vector<vector<float> > TopMatrix(){
+  return mystack.top();
+}
+
 void PopMatrix(){
   mystack.pop();
 }
@@ -107,15 +111,23 @@ vector<vector<float> > Multiply4x4(vector<vector<float> > a, vector<vector<float
 }
 
 vector<vector<float> > Multiply4x1(vector<vector<float> > a, vector<vector<float> > b){
+  cout << "start";
   vector<vector<float> > result(4, vector<float>(1));
+  for (int i = 0; i < 4; i++)
+    result[i][0] = 0;
   for (int i = 0; i < 4; i++){
-    int j = 0;
-    result[i][j] = 0;
-    for (int k = 0; k < 4; k++){
-      result[i][j] = result[i][j] + a[i][k]*b[k][j];
+    for (int j = 0; j < 4; j++){
+      result[i][0] += a[i][j]*b[j][0];
     }
   }
-  result[4][0] = 1;
+  return result;
+}
+
+vector<vector<float> > Multiply1x1(vector<vector<float> > a, vector<vector<float> > b){
+  vector<vector<float> > result(1, vector<float>(1));
+  for (int i = 0; i < 4; i++){
+    result[0][0] += result[0][0] + a[i][0]*b[i][0];
+  }
   return result;
 }
 
@@ -132,8 +144,7 @@ void printStack(){
 
 void printVector(vector<vector<float> > point){
   for(int i = 0; i < 4; i++){
-    for(int j = 0; j < 1; j++)
-      cout << point[i][j] << " ";
+    cout << point[i][0] << " ";
     cout << endl;
   }
   cout << endl;
